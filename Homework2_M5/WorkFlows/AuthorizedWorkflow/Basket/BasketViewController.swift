@@ -14,8 +14,9 @@ class BasketViewController: UIViewController {
         setBackground()
         initialize()
         makeConstraints()
-//        initialize()
     }
+    
+    private let basketLabel = UILabel()
     
     private var tableView: UITableView!
     private let cocktailImageArray: [UIImage] = [
@@ -55,14 +56,25 @@ class BasketViewController: UIViewController {
     }
 
     private func makeConstraints() {
+        view.addSubview(basketLabel)
+        basketLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(100)
+            make.left.equalToSuperview().inset(20)
+        }
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
+            make.top.equalTo(basketLabel.snp.bottom).offset(20)
             make.trailing.leading.equalToSuperview().inset(20)
             make.height.equalTo(1000)
         }
     }
 
     private func initialize() {
+        basketLabel.textColor = .white
+        basketLabel.text = "Your order:"
+        basketLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        
         tableView = UITableView(frame: .zero)
         tableView.backgroundColor = .clear
         tableView.allowsSelection = true

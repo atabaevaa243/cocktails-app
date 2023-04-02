@@ -13,40 +13,35 @@ class BasketTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.initialize()
         self.makeConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private let cocktailImageView: UIImageView = {
-        let cocktailImageView = UIImageView()
+
+    private let cocktailImageView = UIImageView()
+    private let cocktailNameLabel = UILabel()
+    private let cocktailPriceLabel = UILabel()
+
+    private func initialize() {
         cocktailImageView.contentMode = .scaleToFill
         cocktailImageView.layer.cornerRadius = 20
         cocktailImageView.clipsToBounds = true
         cocktailImageView.image = UIImage(systemName: "")
-        return cocktailImageView
-    }()
-    
-    private let cocktailNameLabel: UILabel = {
-        let cocktailNameLabel = UILabel()
+        
         cocktailNameLabel.textColor = .white
         cocktailNameLabel.textAlignment = .left
         cocktailNameLabel.font = .systemFont(ofSize: 20, weight: .medium)
         cocktailNameLabel.text = ""
-        return cocktailNameLabel
-    }()
-    
-    private let cocktailPriceLabel: UILabel = {
-        let cocktailPriceLabel = UILabel()
+        
         cocktailPriceLabel.textColor = .lightGray
         cocktailPriceLabel.textAlignment = .left
         cocktailPriceLabel.font = .systemFont(ofSize: 16, weight: .regular)
         cocktailPriceLabel.text = ""
-        return cocktailPriceLabel
-    }()
-    
+    }
+
     public func configure(image: UIImage, name: String, price: String) {
         self.cocktailImageView.image = image
         self.cocktailNameLabel.text = name
@@ -62,7 +57,7 @@ class BasketTableViewCell: UITableViewCell {
         
         addSubview(cocktailNameLabel)
         cocktailNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(30)
             make.leading.equalTo(cocktailImageView.snp.trailing).offset(20)
             make.width.equalTo(120)
         }

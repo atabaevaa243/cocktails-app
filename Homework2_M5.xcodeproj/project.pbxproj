@@ -27,6 +27,9 @@
 		466734A129D473F600B49B48 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466734A029D473F600B49B48 /* DatabaseManager.swift */; };
 		466734A429D77CBB00B49B48 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466734A329D77CBA00B49B48 /* VerificationViewController.swift */; };
 		466734A829D97F4F00B49B48 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466734A729D97F4F00B49B48 /* BasketTableViewCell.swift */; };
+		466734AD29D9D86100B49B48 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466734AC29D9D86100B49B48 /* KeyChainManager.swift */; };
+		466734AF29D9D88D00B49B48 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466734AE29D9D88D00B49B48 /* Constants.swift */; };
+		466734B429D9DDEA00B49B48 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466734B329D9DDEA00B49B48 /* SplashViewController.swift */; };
 		46B4CE4829C1053F0085F7C4 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B4CE4729C1053F0085F7C4 /* SigninViewController.swift */; };
 		46BEAED929C5FFD00086F3EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46BEAED829C5FFD00086F3EF /* GoogleService-Info.plist */; };
 		46BEAEDB29C9B56D0086F3EF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BEAEDA29C9B56D0086F3EF /* MenuViewController.swift */; };
@@ -57,6 +60,9 @@
 		466734A029D473F600B49B48 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		466734A329D77CBA00B49B48 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		466734A729D97F4F00B49B48 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		466734AC29D9D86100B49B48 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		466734AE29D9D88D00B49B48 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		466734B329D9DDEA00B49B48 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		46B4CE4729C1053F0085F7C4 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		46BEAED829C5FFD00086F3EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46BEAEDA29C9B56D0086F3EF /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 		4667348D29CE3D2800B49B48 /* BarMenu */ = {
 			isa = PBXGroup;
 			children = (
+				46BEAEDA29C9B56D0086F3EF /* MenuViewController.swift */,
 				4667348E29CE3D3600B49B48 /* Components */,
 			);
 			path = BarMenu;
@@ -191,6 +198,40 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		466734A929D9D4E600B49B48 /* AuthorizationService */ = {
+			isa = PBXGroup;
+			children = (
+				4667347B29CB3CEA00B49B48 /* AuthorizationManager.swift */,
+			);
+			path = AuthorizationService;
+			sourceTree = "<group>";
+		};
+		466734AB29D9D84000B49B48 /* KeyChainManager */ = {
+			isa = PBXGroup;
+			children = (
+				466734AC29D9D86100B49B48 /* KeyChainManager.swift */,
+				466734AE29D9D88D00B49B48 /* Constants.swift */,
+			);
+			path = KeyChainManager;
+			sourceTree = "<group>";
+		};
+		466734B029D9DD7F00B49B48 /* Signin */ = {
+			isa = PBXGroup;
+			children = (
+				46B4CE4729C1053F0085F7C4 /* SigninViewController.swift */,
+				466734A329D77CBA00B49B48 /* VerificationViewController.swift */,
+			);
+			path = Signin;
+			sourceTree = "<group>";
+		};
+		466734B129D9DDA800B49B48 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				4667348329CCF14800B49B48 /* SignupViewController.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
 		46B4CE3F29C0F8BD0085F7C4 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,9 +270,10 @@
 		46B4CE4329C0FA3E0085F7C4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				466734AB29D9D84000B49B48 /* KeyChainManager */,
+				466734A929D9D4E600B49B48 /* AuthorizationService */,
 				4667349F29D473D100B49B48 /* DatabaseService */,
 				4667349329CE436700B49B48 /* NetworkService */,
-				4667347B29CB3CEA00B49B48 /* AuthorizationManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -252,7 +294,6 @@
 				466734A229D71AEF00B49B48 /* Profile */,
 				4667349629CE517900B49B48 /* CocktailDetails */,
 				4667348D29CE3D2800B49B48 /* BarMenu */,
-				46BEAEDA29C9B56D0086F3EF /* MenuViewController.swift */,
 				4667348929CCFB4900B49B48 /* MainTabBarController.swift */,
 			);
 			path = AuthorizedWorkflow;
@@ -261,10 +302,10 @@
 		46B4CE4629C103D10085F7C4 /* UnauthorizedWorkflow */ = {
 			isa = PBXGroup;
 			children = (
+				466734B129D9DDA800B49B48 /* Signup */,
+				466734B029D9DD7F00B49B48 /* Signin */,
 				4667349B29CE78EB00B49B48 /* Components */,
-				46B4CE4729C1053F0085F7C4 /* SigninViewController.swift */,
-				4667348329CCF14800B49B48 /* SignupViewController.swift */,
-				466734A329D77CBA00B49B48 /* VerificationViewController.swift */,
+				466734B329D9DDEA00B49B48 /* SplashViewController.swift */,
 			);
 			path = UnauthorizedWorkflow;
 			sourceTree = "<group>";
@@ -402,9 +443,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4667348829CCFAC300B49B48 /* BasketViewController.swift in Sources */,
+				466734AF29D9D88D00B49B48 /* Constants.swift in Sources */,
 				4667347C29CB3CEA00B49B48 /* AuthorizationManager.swift in Sources */,
 				4667348A29CCFB4900B49B48 /* MainTabBarController.swift in Sources */,
 				4667349829CE51A800B49B48 /* CocktailDetailsViewController.swift in Sources */,
+				466734B429D9DDEA00B49B48 /* SplashViewController.swift in Sources */,
 				4667349E29CE792100B49B48 /* ButtonView.swift in Sources */,
 				4667349229CE3F8D00B49B48 /* CocktailModel.swift in Sources */,
 				46B4CE4829C1053F0085F7C4 /* SigninViewController.swift in Sources */,
@@ -420,6 +463,7 @@
 				4667348629CCFAB700B49B48 /* ProfileViewController.swift in Sources */,
 				4667349A29CE688500B49B48 /* IngredientsLabel.swift in Sources */,
 				464B220129C0F6E5002C79CD /* AppDelegate.swift in Sources */,
+				466734AD29D9D86100B49B48 /* KeyChainManager.swift in Sources */,
 				464B220329C0F6E5002C79CD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

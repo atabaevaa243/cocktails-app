@@ -170,7 +170,7 @@ extension MenuViewController: UICollectionViewDelegateFlowLayout {
         vc.descriptionTextLabel.text = cocktailsArray[indexPath.row].strInstructions
         vc.ingredient1.text = cocktailsArray[indexPath.row].strIngredient1
         vc.ingredient2.text = cocktailsArray[indexPath.row].strIngredient2
-        navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true)
     }
 }
 

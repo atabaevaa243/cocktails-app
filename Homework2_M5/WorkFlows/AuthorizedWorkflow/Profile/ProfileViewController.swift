@@ -34,6 +34,23 @@ class ProfileViewController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    private func initialize() {
+        profileLabel.text = "Profile"
+        profileLabel.textColor = UIColor(ciColor: .white)
+        profileLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        
+        profileImageView.image = UIImage(systemName: "person")
+        profileImageView.tintColor = UIColor.white
+        profileImageView.layer.cornerRadius = 150 / 2
+        profileImageView.layer.borderWidth = 3
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.white.cgColor
+        
+        userNameLabel.text = "Sanita Queen"
+        userNameLabel.textColor = UIColor(ciColor: .white)
+        userNameLabel.font = UIFont.systemFont(ofSize: 25, weight: .regular)
+    }
+    
     private func makeConstraints() {
         view.addSubview(profileLabel)
         profileLabel.snp.makeConstraints { maker in
@@ -66,23 +83,5 @@ class ProfileViewController: UIViewController {
             make.top.equalTo(numberTextField.snp.bottom).offset(20)
             make.trailing.leading.equalToSuperview().inset(30)
         }
-    }
-    
-    private func initialize() {
-        profileLabel.text = "Profile"
-        profileLabel.textColor = UIColor(ciColor: .white)
-        profileLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        
-        profileImageView.image = UIImage(systemName: "person")
-        profileImageView.tintColor = UIColor.white
-//        profileImageView.backgroundColor = UIColor(ciColor: .white)
-        profileImageView.layer.cornerRadius = 150 / 2
-        profileImageView.layer.borderWidth = 3
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = UIColor.white.cgColor
-        
-        userNameLabel.text = "Sanita Queen"
-        userNameLabel.textColor = UIColor(ciColor: .white)
-        userNameLabel.font = UIFont.systemFont(ofSize: 25, weight: .regular)
     }
 }

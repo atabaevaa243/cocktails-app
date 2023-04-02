@@ -19,9 +19,9 @@ class SigninViewController: UIViewController {
     
     private let signinLabel = UILabel()
     private let phoneTextField = RegisterTextField(placeholder: "Enter your phone")
-    private let passwordTextField = RegisterTextField(placeholder: "Enter your password")
-    private let signinButton = LoginButton(title: "Sign In")
-    private let signupButton = LoginButton(title: "Sign Up")
+    private let getCodeButton = LoginButton(title: "Get code")
+    
+    private let authApi = AuthorizationManager()
     
     private func setBackground() {
         let color1 = UIColor(red: 27 / 255, green: 27 / 255, blue: 27 / 255, alpha: 1.0).cgColor
@@ -38,33 +38,20 @@ class SigninViewController: UIViewController {
     private func makeConstraints() {
         view.addSubview(signinLabel)
         signinLabel.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(200)
+            maker.top.equalToSuperview().inset(250)
             maker.left.equalToSuperview().inset(30)
         }
         
         view.addSubview(phoneTextField)
         phoneTextField.snp.makeConstraints { make in
-            make.top.equalTo(signinLabel).inset(90)
+            make.top.equalTo(signinLabel).inset(80)
             make.trailing.leading.equalToSuperview().inset(30)
         }
-        
-        view.addSubview(passwordTextField)
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(phoneTextField).inset(80)
-            make.trailing.leading.equalToSuperview().inset(30)
-        }
-        
-        view.addSubview(signinButton)
-        signinButton.snp.makeConstraints { make in
+    
+        view.addSubview(getCodeButton)
+        getCodeButton.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.top.equalTo(passwordTextField).inset(100)
-            make.trailing.leading.equalToSuperview().inset(30)
-        }
-        
-        view.addSubview(signupButton)
-        signupButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.top.equalTo(signinButton).inset(60)
+            make.top.equalTo(phoneTextField).inset(100)
             make.trailing.leading.equalToSuperview().inset(30)
         }
     }
@@ -74,22 +61,21 @@ class SigninViewController: UIViewController {
         signinLabel.textColor = UIColor(ciColor: .white)
         signinLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         
-        passwordTextField.isSecureTextEntry = true
-    
-        signinButton.addTarget(self, action: #selector(onClickOpenMenuVC), for: .touchUpInside)
-        
-        signupButton.backgroundColor = .black
-        signupButton.setTitleColor(.white, for: .normal)
-        signupButton.addTarget(self, action: #selector(onClickOpenSignupVC), for: .touchUpInside)
+        getCodeButton.addTarget(self, action: #selector(sendTap), for: .touchUpInside)
     }
     
     @objc
-    func onClickOpenSignupVC(vc: UIViewController) {
-        navigationController?.pushViewController(SignupViewController(), animated: true)
-    }
-    
-    @objc
-    func onClickOpenMenuVC() {
-        navigationController?.pushViewController(MainTabBarController(), animated: true)
+    func sendTap(sender: UIButton!) {
+        guard let phone = phoneTextField.text, !phone.isEmpty else {
+            return
+        }
+        authApi.tryToSendSMSCode(phoneNumber: phone) { result in
+            if case .success = result {
+                let vc = VerificationViewController()
+                self.present(vc, animated: true)
+            } else {
+                fatalError()
+            }
+        }
     }
 }

@@ -5,13 +5,18 @@
 //  Created by Aziza A on 22/3/23.
 //
 
-import Foundation
+import UIKit
 import FirebaseAuth
 
 class AuthorizationManager {
+    
+    static let shared = AuthorizationManager()
+    
     private let auth = Auth.auth()
     private let provider = PhoneAuthProvider.provider()
     private var verificationID: String?
+    private let keychain = KeyChainManager.shared
+    private let userdefault = UserDefaults.standard
     
     /// Метод, для того чтобы отправлять номер телефона в Firebase
     /// - Parameters:
@@ -24,18 +29,17 @@ class AuthorizationManager {
                 return
             }
             
-            self.verificationID = verificationID
+            self.userdefault.set(verificationID, forKey: "vID")
             completion(.success(()))
         }
     }
-    
     
     /// Метод для верификации смс кода
     /// - Parameters:
     ///   - smsCode: на телефоне
     ///   - completion: result
     func tryToSignIn(smsCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let verificationID = verificationID else {
+        guard let verificationID = userdefault.string(forKey: "vID") else {
             fatalError()
         }
         
@@ -49,8 +53,17 @@ class AuthorizationManager {
             }
             
             if self.auth.currentUser != nil {
+                self.saveSession()
                 completion(.success(()))
             }
         }
+    }
+    
+    private func saveSession() {
+        let minuteLater = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .secondsSince1970
+        let data = try! encoder.encode(minuteLater)
+        self.keychain.save(data, service: Constants.Keychain.service, account: Constants.Keychain.account)
     }
 }
